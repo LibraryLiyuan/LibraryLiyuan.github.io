@@ -1,0 +1,45 @@
+name: Hexo Deploy
+
+on:
+  push:
+    branches:
+      - main # 确保这是你存放源码的分支名
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive' # 如果你的主题是 git clone 来的，需要这个
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22' # 使用稳定的 Node 版本
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Generate Static Files
+        run: npx hexo clean && npx hexo g
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './public'
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
