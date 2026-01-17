@@ -4,9 +4,9 @@
 
 # Site
 title: LibraryLiyuan
-subtitle: 
+subtitle: 游戏开发 | Unity | UE5
 description: 
-keywords:
+keywords: 
 author: 李渊
 language: zh-CN
 timezone: Asia/Shanghai
@@ -41,7 +41,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 syntax_highlighter: highlight.js
