@@ -11,8 +11,8 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
-        with:
-          submodules: 'recursive' # 如果你的主题是 git clone 来的，需要这个
+        # with:
+        #  submodules: 'recursive' # 如果你的主题是 git clone 来的，需要这个
 
       - name: Setup Node
         uses: actions/setup-node@v4
